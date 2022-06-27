@@ -1,0 +1,7 @@
+client_secret.json
+config.json
+filter.json
+target/*
+*/target/*
+*/StoredCredential*
+.idea/*
