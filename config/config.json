@@ -1,0 +1,7 @@
+{
+  "discord.activity": "discord activity",
+  "discord.token": "discord bot token",
+  "filter_complex.path": "path to filter file within this folder",
+  "ffmpeg.path": "path to ffmpeg.exe only needed on windows, on linux make sure you have ffmpeg installed",
+  "client_secret.json": "path to client_secret.json"
+}
