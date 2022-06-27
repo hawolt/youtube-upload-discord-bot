@@ -15,7 +15,7 @@ import java.nio.file.Path;
 public class PersistentSettings {
     private final String uuid;
 
-    private String track, title;
+    private String track, title, categoryId, description;
     private File audio, image;
     private long message, guild, channel, duration;
 
@@ -43,6 +43,33 @@ public class PersistentSettings {
         this.duration = duration;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getTrack() {
+        return track;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setTrack(String track) {
+        this.track = track;
+    }
 
     public boolean isComplete() {
         return audio != null && image != null;

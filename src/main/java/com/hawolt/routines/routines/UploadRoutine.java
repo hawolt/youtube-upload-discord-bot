@@ -100,6 +100,8 @@ public class UploadRoutine extends MediaManager implements ArtCallback, IRoutine
         parser.add(Argument.create("tr", "track", "url to track", true, true, false));
         parser.add(Argument.create("ti", "title", "video title", true, true, false));
         parser.add(Argument.create("i", "image", "url to image", true, true, false));
+        parser.add(Argument.create("c", "category", "youtube category", true, true, false));
+        parser.add(Argument.create("d", "description", "video description", true, true, false));
         String[] args = convert(Arrays.stream(event.getMessage().getContentDisplay().split(" ")).skip(1).collect(Collectors.joining(" ")));
         try {
             CLI cli = parser.check(args);
@@ -112,6 +114,8 @@ public class UploadRoutine extends MediaManager implements ArtCallback, IRoutine
             settings.setChannel(event.getChannel().getIdLong());
             settings.setGuild(event.getGuild().getIdLong());
             settings.setTitle(cli.getValue("title"));
+            settings.setDescription(cli.getValue("description"));
+            settings.setCategoryId(cli.getValue("category"));
             String track = cli.getValue("track").trim();
             map.put(track, settings);
             settings.setURL(track);
@@ -138,7 +142,7 @@ public class UploadRoutine extends MediaManager implements ArtCallback, IRoutine
         edit(settings, "crunching numbers");
         try {
             File file = FFMPEG.create(settings);
-            Youtube.upload(settings, file);
+            Youtube.upload(settings, file, settings.getCategoryId(), settings.getDescription());
             TMP_DIR.resolve(settings.getUUID()).toFile().delete();
         } catch (IOException | InterruptedException | GeneralSecurityException e) {
             Logger.error(e);
