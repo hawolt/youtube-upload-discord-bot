@@ -142,7 +142,7 @@ public class UploadRoutine extends MediaManager implements ArtCallback, IRoutine
         edit(settings, "crunching numbers");
         try {
             File file = FFMPEG.create(settings);
-            Youtube.upload(settings, file, settings.getCategoryId(), settings.getDescription());
+            Youtube.upload(settings, file);
             TMP_DIR.resolve(settings.getUUID()).toFile().delete();
         } catch (IOException | InterruptedException | GeneralSecurityException e) {
             Logger.error(e);

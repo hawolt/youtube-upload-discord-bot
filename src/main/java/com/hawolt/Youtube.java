@@ -74,13 +74,13 @@ public class Youtube {
         return new YouTube.Builder(httpTransport, JSON_FACTORY, credential).setApplicationName(APPLICATION_NAME).build();
     }
 
-    public static void upload(PersistentSettings settings, File mediaFile, String categoryId, String description) throws GeneralSecurityException, IOException {
+    public static void upload(PersistentSettings settings, File mediaFile) throws GeneralSecurityException, IOException {
         UploadRoutine.edit(settings, "uploading");
         YouTube youtubeService = getService();
         Video video = new Video();
         VideoSnippet snippet = new VideoSnippet();
-        snippet.setCategoryId(categoryId);
-        snippet.setDescription(description);
+        snippet.setCategoryId(settings.getCategoryId());
+        snippet.setDescription(settings.getDescription());
         snippet.setTitle(settings.getTitle());
         video.setSnippet(snippet);
 
