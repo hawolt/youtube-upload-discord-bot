@@ -1,0 +1,3 @@
+[v:0] gblur=sigma=20,scale=1280x720,setsar=1[bg];
+[0:v] scale=1280x720:force_original_aspect_ratio=decrease[fg];
+[bg][fg] overlay=x=(W-w)/2
